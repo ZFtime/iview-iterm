@@ -405,6 +405,116 @@ export default [
       }
     ]
   },
+  // start
+  {
+    path: '/msg',
+    name: '信息管理',
+    meta: {
+      icon: 'md-menu',
+      title: '信息管理'
+    },
+    component: Main,
+    children: [
+      {
+        path: 'company',
+        name: '我的公司',
+        meta: {
+          title: '我的公司'
+        },
+        component: () => import('@/view/msg/company.vue')
+      },
+      {
+        path: 'icp',
+        name: '许可证管理',
+        meta: {
+          title: '许可证管理'
+        },
+        component: () => import('@/view/msg/icp.vue')
+      },
+      {
+        path: 'brand',
+        name: '商标管理',
+        meta: {
+          title: '商标管理'
+        },
+        component: () => import('@/view/msg/brand.vue')
+      },
+      {
+        path: 'mag',
+        name: '网站备案查询管理',
+        meta: {
+          title: '网站备案查询管理'
+        },
+        component: () => import('@/view/msg/mag.vue')
+      }
+    ]
+  },
+  {
+    path: '/ser',
+    name: '服务管理',
+    meta: {
+      icon: 'md-cloud-upload',
+      title: '服务管理'
+    },
+    component: Main,
+    children: [
+      {
+        path: 'yearCheck',
+        name: '许可证年检',
+        meta: {
+          title: '许可证年检'
+        },
+        component: () => import('@/view/ser/yearCheck.vue')
+      },
+      {
+        path: 'renewal',
+        name: '许可证续期',
+        meta: {
+          title: '许可证续期'
+        },
+        component: () => import('@/view/ser/renewal.vue')
+      }
+    ]
+  },
+  {
+    path: '/order',
+    name: '订单管理',
+    meta: {
+      hideInBread: true
+    },
+    component: Main,
+    children: [
+      {
+        path: 'checkUp',
+        name: '许可证年检',
+        meta: {
+          icon: 'logo-buffer',
+          title: '许可证年检'
+        },
+        component: () => import('@/view/order/checkUp.vue')
+      }
+    ]
+  },
+  {
+    path: '/afterSale',
+    name: '售后服务',
+    meta: {
+      hideInBread: true
+    },
+    component: Main,
+    children: [
+      {
+        path: 'bill',
+        name: '发票信息',
+        meta: {
+          icon: 'ios-navigate',
+          title: '发票信息'
+        },
+        component: () => import('@/view/afterSale/bill.vue')
+      }
+    ]
+  },
+  // End
   {
     path: '/argu',
     name: 'argu',
