@@ -1,0 +1,18 @@
+{
+    "success":{
+        "result":{
+            "userId":"12345",
+            "userName":"admin",
+            "password":12345,
+            "auth":1,
+            "lastTime":null
+        },
+        "code":1,
+        "message":"success"
+    },
+    "fail":{
+        "message":"success",
+        "code":0,
+        "result":{}
+    }
+}
