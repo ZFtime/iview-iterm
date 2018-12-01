@@ -1,3 +1,9 @@
+<style>
+/* .main .header-con{
+  background-color:#3E3A39;
+} */
+</style>
+
 <template>
   <Layout style="height: 100%" class="main">
     <Sider hide-trigger collapsible :width="256" :collapsed-width="64" v-model="collapsed" class="left-sider" :style="{overflow: 'hidden'}">
@@ -20,9 +26,9 @@
       </Header>
       <Content class="main-content-con">
         <Layout class="main-layout-con">
-          <div class="tag-nav-wrapper">
+          <!-- <div class="tag-nav-wrapper">
             <tags-nav :value="$route" @input="handleClick" :list="tagNavList" @on-close="handleCloseTag"/>
-          </div>
+          </div> -->
           <Content class="content-wrapper">
             <keep-alive :include="cacheList">
               <router-view/>
@@ -70,9 +76,7 @@ export default {
     }
   },
   computed: {
-    ...mapGetters([
-      'errorCount'
-    ]),
+    ...mapGetters(['errorCount']),
     tagNavList () {
       return this.$store.state.app.tagNavList
     },
@@ -83,7 +87,14 @@ export default {
       return this.$store.state.user.avatorImgPath
     },
     cacheList () {
-      return ['ParentView', ...this.tagNavList.length ? this.tagNavList.filter(item => !(item.meta && item.meta.notCache)).map(item => item.name) : []]
+      return [
+        'ParentView',
+        ...(this.tagNavList.length
+          ? this.tagNavList
+            .filter(item => !(item.meta && item.meta.notCache))
+            .map(item => item.name)
+          : [])
+      ]
     },
     menuList () {
       return this.$store.getters.menuList
@@ -106,10 +117,7 @@ export default {
       'setLocal',
       'setHomeRoute'
     ]),
-    ...mapActions([
-      'handleLogin',
-      'getUnreadMessageCount'
-    ]),
+    ...mapActions(['handleLogin', 'getUnreadMessageCount']),
     turnToPage (route) {
       let { name, params, query } = {}
       if (typeof route === 'string') name = route
@@ -147,7 +155,7 @@ export default {
     }
   },
   watch: {
-    '$route' (newRoute) {
+    $route (newRoute) {
       const { name, query, params, meta } = newRoute
       this.addTag({
         route: { name, query, params, meta },

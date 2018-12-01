@@ -1,4 +1,5 @@
 <template>
+  <!-- 删除这个页面 右边的关闭按钮  -->
   <div class="tags-nav">
     <div class="close-con">
       <Dropdown transfer @on-click="handleTagsOption" style="margin-top:7px;">

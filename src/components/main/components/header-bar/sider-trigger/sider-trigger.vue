@@ -1,4 +1,5 @@
 <template>
+  <!-- 侧边的bar -->
   <a @click="handleChange" type="text" :class="['sider-trigger-a', collapsed ? 'collapsed' : '']"><Icon :type="icon" :size="size" /></a>
 </template>
 <script>
