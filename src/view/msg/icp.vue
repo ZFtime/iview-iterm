@@ -207,7 +207,9 @@ export default {
           // 隐藏load
           this.$Spin.hide()
         })
-        .catch(res => {})
+        .catch(res => {
+          this.$Spin.hide()
+        })
     },
     changePage (page) {
       // 因为page索引是从0开始的
