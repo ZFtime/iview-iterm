@@ -1,6 +1,6 @@
 {
   "success": {
-    "message":"success",
+    "message": "success",
     "code": 1,
     "result": [{
       "id": "212121",
@@ -48,12 +48,12 @@
       "otime": "2018-02-12",
       "state": "不可用"
     }],
-    "totalNum":"110"
+    "totalNum": "110"
   },
-  "fail":{
-      "message":"success",
-      "code":0,
-      "result":[],
-      "totalNum":null
+  "fail": {
+    "message": "success",
+    "code": 0,
+    "result": [],
+    "totalNum": null
   }
 }
