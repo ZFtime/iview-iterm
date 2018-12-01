@@ -1,44 +1,24 @@
-<style>
-.c-titile h3 {
-  width: 100px;
-  line-height: 53px;
-  float: left;
-}
-.c-right {
-  width: 668px;
-  float: right;
-  line-height: 37px;
-}
-.c-input {
-  float: left;
-  width: 586px;
-}
-.c-btn {
-  float: right;
-}
-.F-input{
+<style lang="less">
+@import "./msg.less";
+.F-input {
   height: 50px;
   line-height: 30px;
+  label {
+    float: left;
+    text-align: right;
+    width: 10%;
+    height: 32px;
+  }
+  .F-i-input {
+    width: 80%;
+    float: left;
+  }
 }
-.F-input label{
-  float: left;
-  text-align: right;
-  width: 10%;
-}
-.F-input .ivu-input-wrapper{
-  float: left;
-  width: 86%;
-}
-.ivu-page{
-  float: right;
-  padding: 10px 0px;
-}
-
 </style>
 
 <template>
-    <div>
-        <div class="c-titile">
+    <div class="company">
+        <div class="c-title">
             <h3>我的公司</h3>
             <div class="c-right">
                 <div class="c-input">
@@ -49,24 +29,28 @@
                   <Modal
                     v-model="modal"
                     class-name="vertical-center-modal">
-                    <Form:get ref="formValidate" :model="formValidate">
-                      <div class="F-input">
+                    <Form :model="formValidate">
+                     <div class="F-input">
                         <Label>公司名：</Label>
-                         <i-input v-model="name" placeholder="请输入公司名" ></i-input>
+                        <div class="F-i-input">
+                          <i-input v-model="name" placeholder="请输入公司名" ></i-input>
+                        </div>
+
                       </div>
                        <div  class="F-input">
                         <Label>邮箱： </Label>
+                        <div class="F-i-input">
                         <i-input v-model="mail" placeholder="请输入邮箱"></i-input>
+                        </div>
                       </div>
 
-                    </Form:get>
+                    </Form>
                 </Modal>
                </div>
             </div>
              <Divider solide />
         </div>
          <Content>
-
                <Table border :columns="columns7" :data="data6"></Table>
           </Content>
         <div style="page">
@@ -209,6 +193,9 @@ export default {
           state: '证书状态'
         }
       ],
+      page: 0,
+      size: 10,
+      totalNum: '',
       modal: false
     }
   },
@@ -223,6 +210,9 @@ export default {
     },
     remove (index) {
       this.data6.splice(index, 1)
+    },
+    showPage () {
+
     }
     // ok() {
     //   this.$Message.info("Clicked me");
