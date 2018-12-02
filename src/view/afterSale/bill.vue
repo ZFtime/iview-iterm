@@ -50,19 +50,17 @@ export default {
 
     showPage () {
       util.loadingShow(this)
-      Http.request({
-        url: 'http://localhost:9099/success',
+      Http.jsRequest({
+        url: 'http://localhost:9090/success',
         method: 'get',
         data: {
           start: 25,
           count: 25
         }
       }).then((res) => {
-        setTimeout(() => {
-          util.loadingHide(this)
-        }, 1000)
+        util.loadingHide(this)
       }).catch((res) => {
-        console.log(res)
+        util.loadingHide(this)
       })
     }
 

@@ -1,5 +1,5 @@
 <style lang="less">
-  @import './login.less';
+@import "./login.less";
 </style>
 
 <template>
@@ -18,28 +18,38 @@
 <script>
 import LoginForm from '_c/login-form'
 import { mapActions } from 'vuex'
+import Http from '../../common/networkRequest.js'
 export default {
   components: {
     LoginForm
   },
   methods: {
-    ...mapActions([
-      'handleLogin',
-      'getUserInfo'
-    ]),
+    ...mapActions(['handleLogin', 'getUserInfo']),
     handleSubmit ({ userName, password }) {
-      this.handleLogin({ userName, password }).then(res => {
-        this.getUserInfo().then(res => {
-          this.$router.push({
-            name: this.$config.homeName
-          })
-        })
+      Http.jsRequest({
+        url: 'http://localhost:9099/success',
+        method: 'get',
+        data: {
+          userName: userName,
+          password: password
+        }
       })
+        .then(res => {
+          if (res.code && res.code === 1) {
+            this.handleLogin({ userName, password }).then(res => {
+              this.getUserInfo().then(res => {
+                this.$router.push({
+                  name: '许可证管理'
+                })
+              })
+            })
+          }
+        })
+        .catch(res => {})
     }
   }
 }
 </script>
 
 <style>
-
 </style>

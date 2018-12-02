@@ -46,6 +46,7 @@ export default class Http {
         }
       };
       let postData = params.join('&')
+      xmlHttp.timeout = 15000
       if (methods.toUpperCase() === 'POST') {
         xmlHttp.open('POST', url, true)
         xmlHttp.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded;charset=utf-8')
@@ -58,8 +59,16 @@ export default class Http {
         xmlHttp.send(null)
       }
       xmlHttp.onreadystatechange = function () {
-        if (xmlHttp.readyState === 4 && xmlHttp.status === 200) {
-          resolve(JSON.parse(xmlHttp.responseText))
+        if (xmlHttp.readyState === 4) {
+          try {
+            if ((xmlHttp.status >= 200 && xmlHttp.status < 300) || xmlHttp.status === 304) {
+              resolve(JSON.parse(xmlHttp.responseText))
+            } else {
+              resolve('Request was unsuccessful:' + xmlHttp.status)
+            }
+          } catch (error) {
+            reject(error)
+          }
         }
       }
     })

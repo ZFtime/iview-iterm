@@ -13,12 +13,21 @@ const USER_MAP = {
     access: ['admin'],
     token: 'admin',
     avator: 'https://avatars0.githubusercontent.com/u/20942571?s=460&v=4'
+  },
+  user: {
+    name: 'admin',
+    user_id: '2',
+    access: ['admin'],
+    token: 'admin',
+    avator: 'https://avatars0.githubusercontent.com/u/20942571?s=460&v=4'
   }
 }
 
 export const login = req => {
   req = JSON.parse(req.body)
-  return {token: USER_MAP[req.userName].token}
+  console.log(req)
+  return {token: req.userName}
+  // return {token: USER_MAP['user'].token}
 }
 
 export const getUserInfo = req => {
