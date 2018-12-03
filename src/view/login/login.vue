@@ -34,8 +34,9 @@ export default {
         }
       })
         .then(res => {
-          console.log(12122)
           if (res.code && res.code === 1) {
+            sessionStorage.setItem('user', res.result.userName)
+            sessionStorage.setItem('userId', res.result.userId)
             this.handleLogin({ userName, password }).then(res => {
               this.getUserInfo().then(res => {
                 this.$router.push({
@@ -43,6 +44,7 @@ export default {
                 })
               })
             })
+            // sessionStorage.setItem('uesrName',res.result.userName);
           }
         })
         .catch(res => {})

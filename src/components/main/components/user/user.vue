@@ -5,7 +5,7 @@
         <Avatar :src="userAvator"/>
       </Badge> -->
       <Badge>
-
+        {{ userName }}
       </Badge>
       <Icon :size="18" type="md-arrow-dropdown"></Icon>
       <DropdownMenu slot="list">
@@ -21,9 +21,14 @@
 <script>
 import './user.less'
 import { mapActions } from 'vuex'
-import userName from '../../../../view/login/login'
+// import userName from '../../../../view/login/login'
 export default {
   name: 'User',
+  data () {
+    return {
+      userName: ''
+    }
+  },
   props: {
     userAvator: {
       type: String,
@@ -62,7 +67,7 @@ export default {
       }
     },
     UserName () {
-      console.log(userName.userName)
+      this.userName = sessionStorage.getItem('user')
     }
   }
 }
