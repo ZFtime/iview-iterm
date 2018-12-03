@@ -8,7 +8,6 @@
       <Card icon="log-in" title="欢迎登录" :bordered="false">
         <div class="form-con">
           <login-form @on-success-valid="handleSubmit"></login-form>
-          <p class="login-tip">输入任意用户名和密码即可</p>
         </div>
       </Card>
     </div>
@@ -35,6 +34,7 @@ export default {
         }
       })
         .then(res => {
+          console.log(12122)
           if (res.code && res.code === 1) {
             this.handleLogin({ userName, password }).then(res => {
               this.getUserInfo().then(res => {

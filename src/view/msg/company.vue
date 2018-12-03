@@ -195,7 +195,6 @@ export default {
   methods: {
     getcompanydata () {
       util.loadingShow(this)
-      console.log(11)
       axios({
         method: '请求方式',
         url: '请求地址',
