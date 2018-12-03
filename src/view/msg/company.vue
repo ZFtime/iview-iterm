@@ -1,19 +1,6 @@
 <style lang="less">
 @import "./msg.less";
-.F-input {
-  height: 50px;
-  line-height: 30px;
-  label {
-    float: left;
-    text-align: right;
-    width: 10%;
-    height: 32px;
-  }
-  .F-i-input {
-    width: 80%;
-    float: left;
-  }
-}
+@import "../../common/common.less";
 </style>
 
 <template>
@@ -61,6 +48,8 @@
 
 </template>
 <script>
+import axios from 'axios'
+import util from '../../common/util.js'
 export default {
   data () {
     return {
@@ -196,10 +185,31 @@ export default {
       page: 0,
       size: 10,
       totalNum: '',
-      modal: false
+      modal: false,
+      companydata: ''
     }
   },
+  mounted () {
+    this.getcompanydata()
+  },
   methods: {
+    getcompanydata () {
+      util.loadingShow(this)
+      console.log(11)
+      axios({
+        method: '请求方式',
+        url: '请求地址',
+        data: {
+          // 返回给后台的内容（以对象的形式传过去）
+        }
+      })
+        .then(() => {
+          util.loadingHide(this)
+        })
+        .catch(() => {
+          util.loadingHide(this)
+        })
+    },
     show (index) {
       this.$Modal.info({
         title: 'User Info',
@@ -211,9 +221,7 @@ export default {
     remove (index) {
       this.data6.splice(index, 1)
     },
-    showPage () {
-
-    }
+    showPage () {}
     // ok() {
     //   this.$Message.info("Clicked me");
     // },

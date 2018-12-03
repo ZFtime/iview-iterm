@@ -1,5 +1,6 @@
 <style lang="less">
 @import "./msg.less";
+@import "../../common/common.less";
 </style>
 
 <template>
@@ -14,7 +15,7 @@
     </div>
 
           <Content>
-               <Table border :columns="columns7" :data="data1"></Table>
+               <Table border :columns="columns7" no-data-text="暂无数据，请到我的公司添加公司" :data="data1"></Table>
           </Content>
         <div style="page">
            <Page :total="totalNum" @on-change="changePage" show-elevator />
@@ -24,6 +25,7 @@
 </template>
 <script>
 import axios from 'axios'
+import util from '../../common/util.js'
 export default {
   data () {
     return {
@@ -135,31 +137,31 @@ export default {
         }
       ],
       data1: [
-        {
-          id: '100',
-          name: '公司名称',
-          num: '证书编号',
-          type: '证书类型',
-          activity: '业务类型',
-          atime: '颁发时间',
-          otime: '续期时间',
-          state: '证书状态'
-        },
-        {
-          id: '120',
-          name: '公司名称',
-          num: '证书编号',
-          type: '证书类型',
-          activity: '业务类型',
-          atime: '颁发时间',
-          otime: '续期时间',
-          state: '证书状态'
-        }
+        // {
+        //   id: "100",
+        //   name: "公司名称",
+        //   num: "证书编号",
+        //   type: "证书类型",
+        //   activity: "业务类型",
+        //   atime: "颁发时间",
+        //   otime: "续期时间",
+        //   state: "证书状态"
+        // },
+        // {
+        //   id: "120",
+        //   name: "公司名称",
+        //   num: "证书编号",
+        //   type: "证书类型",
+        //   activity: "业务类型",
+        //   atime: "颁发时间",
+        //   otime: "续期时间",
+        //   state: "证书状态"
+        // }
       ],
       // 定义page，size totalNum
       page: 0,
       size: 10,
-      totalNum: 30,
+      totalNum: 0,
       icpvalue: ''
     }
   },
@@ -167,24 +169,8 @@ export default {
     this.renderData()
   },
   methods: {
-    handleSpinCustom () {
-      this.$Spin.show({
-        render: h => {
-          return h('div', [
-            h('Icon', {
-              class: 'demo-spin-icon-load',
-              props: {
-                type: 'ios-loading',
-                size: 18
-              }
-            }),
-            h('div', 'Loading')
-          ])
-        }
-      })
-    },
     renderData () {
-      this.handleSpinCustom()
+      util.loadingShow(this)
       // 开始loading
       axios({
         methods: 'get',
@@ -203,12 +189,11 @@ export default {
             this.data1 = getdata.result
             this.totalNum = Number(getdata.totalNum)
           }
-          console.log(getdata)
-          // 隐藏load
-          this.$Spin.hide()
+
+          util.loadingHide(this)
         })
         .catch(res => {
-          this.$Spin.hide()
+          util.loadingHide(this)
         })
     },
     changePage (page) {
@@ -225,11 +210,11 @@ export default {
           // 以对象的形式返回给后台数据
           value: this.icpvalue
         }
-      }).then((res) => {
-        console.log(res)
-      }).catch(() => {
-
       })
+        .then(res => {
+          console.log(res)
+        })
+        .catch(() => {})
     },
     show (index) {
       this.$Modal.info({
