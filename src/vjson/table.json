@@ -1,55 +1,5 @@
 {
-  "success": {
-    "message": "success",
-    "code": 1,
-    "result": [{
-      "id": "212121",
-      "name": "北京金三科技股份有限公司",
-      "num": "HSDSA-01323",
-      "type": "科技",
-      "activity": "qeqweqweqw",
-      "atime": "2018-01-01",
-      "otime": "2022-12-12",
-      "state": "可用"
-    }, {
-      "id": "434343",
-      "name": "杭州某C公司",
-      "num": "876867",
-      "type": "商业",
-      "activity": "1312312",
-      "atime": "2017-02-03",
-      "otime": "2019-08-09",
-      "state": "可用"
-    }, {
-      "id": "8787",
-      "name": "上海某B公司",
-      "num": "1313123",
-      "type": "农业",
-      "activity": "热企鹅企鹅",
-      "atime": "2016-03-25",
-      "otime": "2020-01-11",
-      "state": "可用"
-    }, {
-      "id": "9053534",
-      "name": "北京某集团",
-      "num": "21243",
-      "type": "农业",
-      "activity": "额外企鹅群",
-      "atime": "2015-01-01",
-      "otime": "2018-12-12",
-      "state": "续期"
-    }, {
-      "id": "3213213",
-      "name": "北京某A公司",
-      "num": "2232",
-      "type": "科技",
-      "activity": "企鹅企鹅",
-      "atime": "2014-09-01",
-      "otime": "2018-02-12",
-      "state": "不可用"
-    }],
-    "totalNum": "110"
-  },
+  "success": {},
   "fail": {
     "message": "success",
     "code": 0,
