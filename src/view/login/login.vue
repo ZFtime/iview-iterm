@@ -17,7 +17,6 @@
 <script>
 import LoginForm from '_c/login-form'
 import { mapActions } from 'vuex'
-import Http from '../../common/networkRequest.js'
 export default {
   components: {
     LoginForm
@@ -25,29 +24,16 @@ export default {
   methods: {
     ...mapActions(['handleLogin', 'getUserInfo']),
     handleSubmit ({ userName, password }) {
-      Http.jsRequest({
-        url: 'http://localhost:9099/success',
-        method: 'get',
-        data: {
-          userName: userName,
-          password: password
-        }
-      })
-        .then(res => {
-          if (res.code && res.code === 1) {
-            sessionStorage.setItem('user', res.result.userName)
-            sessionStorage.setItem('userId', res.result.userId)
-            this.handleLogin({ userName, password }).then(res => {
-              this.getUserInfo().then(res => {
-                this.$router.push({
-                  name: '许可证管理'
-                })
-              })
-            })
-            // sessionStorage.setItem('uesrName',res.result.userName);
-          }
+      this.handleLogin({ userName, password }).then(res => {
+        console.log('handleLogin' + JSON.stringify(res))
+        this.getUserInfo().then(res => {
+          console.log('getUserInfo' + JSON.stringify(res))
+          this.$router.push({
+            name: '商标管理'
+          })
         })
-        .catch(res => {})
+      })
+      // sessionStorage.setItem('uesrName',res.result.userName);
     }
   }
 }
